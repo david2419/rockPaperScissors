@@ -13,7 +13,7 @@
  function computerPlay(){
 
     let randomNumber=Math.floor(Math.random() * 3);
-
+    let computerSelection="";
     if(randomNumber==0){
     computerSelection="rock";
     }
@@ -33,23 +33,23 @@
  function playRound(playerSelection, computerSelection){
 
      let lowerCasePlSel=playerSelection.toLowerCase();
-     let win="You Win! " + lowerCasePlSel + " beats " + computerSelection;
-     let lose="You Lose! " + computerSelection + " beats " + lowerCasePlSel;
-     let tie="It's a tie! " + lowerCasePlSel + " === " + computerSelection;
+     let winPR=0;
+     let losePR=1;
+     let tiePR=2;
 
-     if (lowerCasePlSel=="rock"&&computerSelection=="rock"){return tie; }
-     else if(lowerCasePlSel=="rock"&&computerSelection=="paper"){return lose;}
-     else if(lowerCasePlSel=="rock"&&computerSelection=="scissors"){return win;}
-
-
-     else if (lowerCasePlSel=="paper"&&computerSelection=="rock"){return win;}
-     else if(lowerCasePlSel=="paper"&&computerSelection=="paper"){return tie;}
-     else if(lowerCasePlSel=="paper"&&computerSelection=="scissors"){return lose;}
+     if (lowerCasePlSel=="rock"&&computerSelection=="rock"){return tiePR; }
+     else if(lowerCasePlSel=="rock"&&computerSelection=="paper"){return losePR;}
+     else if(lowerCasePlSel=="rock"&&computerSelection=="scissors"){return winPR;}
 
 
-     else if (lowerCasePlSel=="scissors"&&computerSelection=="rock"){return lose;}
-     else if(lowerCasePlSel=="scissors"&&computerSelection=="paper"){return win;}
-     else {return tie;}
+     else if (lowerCasePlSel=="paper"&&computerSelection=="rock"){return winPR;}
+     else if(lowerCasePlSel=="paper"&&computerSelection=="paper"){return tiePR;}
+     else if(lowerCasePlSel=="paper"&&computerSelection=="scissors"){return losePR;}
+
+
+     else if (lowerCasePlSel=="scissors"&&computerSelection=="rock"){return losePR;}
+     else if(lowerCasePlSel=="scissors"&&computerSelection=="paper"){return winPR;}
+     else {return tiePR;}
 
 
 
@@ -57,11 +57,52 @@
 
     }
 
-const player = "paper";
-const computer = computerPlay();
-console.log("Player Selection:" + player);
-console.log("Computer Selection:" + computer);
-console.log(playRound(player, computer));
+
+
+    function game(){
+
+        
+
+      let playerScore=0;
+      let computerScore=0;
+      
+      let i=0;
+      while(i<5){
+      let playerSelection = "paper";
+      let computerSelection = computerPlay();
+      let playRnd=playRound(playerSelection, computerSelection);
+      if(playRnd==0){playerScore+=1;}
+      else if(playRnd==1){computerScore+=1;}
+      console.log("Player Selection:" + playerSelection);
+      console.log("Computer Selection:" + computerSelection);
+      if (playRnd==0){console.log("You win! "+playerSelection+" beats "+computerSelection)}
+      else if (playRnd==1){console.log("You lose! "+computerSelection+" beats "+playerSelection)}
+      else if (playRnd==2){console.log("Tie! "+computerSelection+" === "+playerSelection)}
+      
+      i++;
+      };
+
+      let win= "You Win! PlayerScore: " + playerScore+ ". Computer Score: "+computerScore+"."
+      let lose= "You Lose! PlayerScore: " + playerScore+ ". Computer Score: "+computerScore+"."
+      let tie= "Tie! PlayerScore: " + playerScore+ ". Computer Score: "+computerScore+"."
+
+      if (playerScore<computerScore){
+      return lose;
+}
+
+else if (playerScore>computerScore){
+      return win;
+}
+
+else{return tie;}
+
+
+
+    }
+
+
+    console.log(game())
+
 
 
 </script>
