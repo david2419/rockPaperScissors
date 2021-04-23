@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ROCK PAPER SCISSORS</title> 
+</head>
+
+
+<body>
+
+<script>
+
+ function computerPlay(){
+
+    let randomNumber=Math.floor(Math.random() * 3);
+
+    if(randomNumber==0){
+    computerSelection="rock";
+    }
+    else if(randomNumber==1){
+    computerSelection="paper";
+    }
+    else{
+    computerSelection="scissors";
+    }
+
+    return computerSelection;
+
+    }
+
+
+
+ function playRound(playerSelection, computerSelection){
+
+     let lowerCasePlSel=playerSelection.toLowerCase();
+     let win="You Win! " + lowerCasePlSel + " beats " + computerSelection;
+     let lose="You Lose! " + computerSelection + " beats " + lowerCasePlSel;
+     let tie="It's a tie! " + lowerCasePlSel + " === " + computerSelection;
+
+     if (lowerCasePlSel=="rock"&&computerSelection=="rock"){return tie; }
+     else if(lowerCasePlSel=="rock"&&computerSelection=="paper"){return lose;}
+     else if(lowerCasePlSel=="rock"&&computerSelection=="scissors"){return win;}
+
+
+     else if (lowerCasePlSel=="paper"&&computerSelection=="rock"){return win;}
+     else if(lowerCasePlSel=="paper"&&computerSelection=="paper"){return tie;}
+     else if(lowerCasePlSel=="paper"&&computerSelection=="scissors"){return lose;}
+
+
+     else if (lowerCasePlSel=="scissors"&&computerSelection=="rock"){return lose;}
+     else if(lowerCasePlSel=="scissors"&&computerSelection=="paper"){return win;}
+     else {return tie;}
+
+
+
+
+
+    }
+
+const player = "paper";
+const computer = computerPlay();
+console.log("Player Selection:" + player);
+console.log("Computer Selection:" + computer);
+console.log(playRound(player, computer));
+
+
+</script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+</html>
